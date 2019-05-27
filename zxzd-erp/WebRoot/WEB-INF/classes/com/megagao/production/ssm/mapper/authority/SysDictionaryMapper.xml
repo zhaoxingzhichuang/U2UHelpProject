@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.megagao.production.ssm.mapper.authority.SysDictionaryMapper" >
+  <resultMap id="BaseResultMap" type="com.megagao.production.ssm.domain.authority.SysDictionary" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="priority" property="priority" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="value" property="value" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="delete_id" property="deleteId" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id,name,priority,type,value,parent_id,delete_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_dictionary
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <!-- 查询所有记录 -->
+  <select id="find" resultMap="BaseResultMap" parameterType="sysDictionary" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_dictionary where type = #{type}
+  </select>
+  
+  <insert id="insert" parameterType="com.megagao.production.ssm.mapper.authority.SysDictionaryMapper" >
+    insert into sys_dictionary (
+    		id,name,priority,type,value,parent_id,delete_id
+    		)
+    	values (#{id,jdbcType=INTEGER},#{name,jdbcType=VARCHAR}, #{priority,jdbcType=INTEGER},#{type,jdbcType=VARCHAR},
+    			#{value,jdbcType=VARCHAR},#{parentId,jdbcType=INTEGER},#{deleteId,jdbcType=VARCHAR}
+      			)
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.megagao.production.ssm.domain.authority.SysDictionary" >
+    update sys_dictionary
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="priority != null" >
+        priority = #{priority,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null" >
+        value = #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="deleteId != null" >
+        delete_id = #{deleteId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.megagao.production.ssm.mapper.authority.SysDictionaryMapper" >
+    update sys_dictionary
+    	set name = #{name,jdbcType=VARCHAR},
+	      	priority = #{priority,jdbcType=INTEGER},
+	      	type = #{ma100,jdbcType=VARCHAR},
+	      	value = #{ma110,jdbcType=VARCHAR},
+	      	parent_id = #{parentId,jdbcType=INTEGER},
+	      	delete_id = #{deleteId,jdbcType=VARCHAR}
+    	where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sys_dictionary
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <select id="findByParent" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_dictionary
+    where parent_id = #{parentId,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="deleteBatch">
+		DELETE FROM
+			sys_dictionary
+		WHERE
+			id IN
+		<foreach collection="array" item="id" open="(" close=")" separator=",">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>
