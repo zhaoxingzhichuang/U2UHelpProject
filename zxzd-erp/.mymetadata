@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-module
   type="WEB"
-  name="linglong-erp"
+  name="zxzd-erp"
   id="myeclipse.1553094410612"
-  context-root="/linglong"
+  context-root="/zxzd"
   j2ee-spec="6.0"
-  archive="linglong-erp.war">
+  archive="zxzd-erp.war">
   <attributes>
     <attribute name="webrootdir" value="WebRoot" />
   </attributes>
