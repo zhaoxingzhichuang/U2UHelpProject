@@ -15,7 +15,7 @@
 }
 .divNorth{
 	/* background:url('image/TitleBackground.jpg') no-repeat center center; */
-	background-color: midnightblue;
+	background-color: #06f7e9;
 	background-size:100% 100%;
 }
 </style>
@@ -31,20 +31,20 @@
 				<td valign="top">
 					<div style="position:relative;">
 						<div style="text-align:left;font-size: 10px;margin: 30px 0px 0px 30px;display:inline-block;">
-    						<span style="display:inline-block;font-size: 30px;font-family: serif;color:#c1dff7;margin:0 0 8px 0;">
-								LINGLONG&nbsp;&nbsp;玲珑
+    						<span style="display:inline-block;font-size: 30px;font-family: serif;color:#fb058b;margin:0 0 8px 0;">
+								R R B M&nbsp;&nbsp;人人帮忙
 							</span>
 						</div>
 						<div style="float:right;text-align:right;font-size:15px;margin: 15px 25px 0px 0px;display:inline-block;">
-							<span style="display:inline-block;font-size:20px;color:#c1dff7;margin:0 0 8px 0;">
-								玲珑进销存系统
+							<span style="display:inline-block;font-size:20px;color:#fb058b;margin:0 0 8px 0;">
+								人人帮忙
 							</span><br>
 							
-							<span style="color:#c1dff7;">${activeUser.rolename}:</span>
-							<span style="color:#c1dff7;">
+							<span style="color:black;">${activeUser.rolename}:</span>
+							<span style="color:black;">
 								${activeUser.username}
 							</span>
-						    &nbsp;<a href="logout" style="text-decoration:none;color:#A9C3D6;"> 退出</a>&nbsp;  &nbsp; 
+						    &nbsp;<a href="logout" style="text-decoration:none;color:black;"> 退出</a>&nbsp;  &nbsp; 
 						</div>
 					</div>
 				</td>
@@ -96,55 +96,18 @@
 					</ul></li>
 			</ul>
 		</div>
-
+		
+		<c:if test="${activeUser.rolename == '超级管理员' }">
 		<div title="后台管理" data-options="selected:true" style="padding:10px">
-			<ul id="technologyMonitor" class="easyui-tree" data-options="animate:true,lines:true">
+			<ul id="backgroundMonitor" class="easyui-tree" data-options="animate:true,lines:true">
 				<li><span>后台管理</span>
-				</li>
-			</ul>
-		</div>
-		
-		<!-- <div title="物料监控" data-options="selected:true" style="padding:10px">
-		
-			<ul id="materialMonitor" class="easyui-tree" data-options="animate:true,lines:true">
-				<li><span>物料监控 </span>
 					<ul>
-						<li id=41 data-options="attributes:{'url':'material/find'}">物料信息</li>
-						<li id=42 data-options="attributes:{'url':'materialReceive/find'}">物料收入</li>
+						<li id=6 data-options="attributes:{'url':'categoryName/find'}">分类名称管理</li>
 					</ul>
 				</li>
 			</ul>
 		</div>
-		
-		<div title="质量监控" data-options="selected:true" style="padding:10px;">
-			<ul id="qualifyMonitor" class="easyui-tree"
-				data-options="animate:true,lines:true">
-				<li><span>质量监控</span>
-					<ul>
-						<li id=51 data-options="attributes:{'url':'unqualify/find'}">不合格品管理</li>
-						<li id=52 data-options="attributes:{'url':'measure/find'}">成品计量质检</li>
-						<li id=53 data-options="attributes:{'url':'f_count_check/find'}">成品计数质检</li>
-						<li id=54 data-options="attributes:{'url':'p_measure_check/find'}">工序计量质检</li>
-						<li id=55 data-options="attributes:{'url':'p_count_check/find'}">工序计数质检</li>
-					</ul>
-				</li>
-			</ul>
-
-		</div>
-		
-		<div title="人员监控" data-options="selected:true" style="padding:10px">
-			<ul id="employeeMonitor" class="easyui-tree"
-				data-options="animate:true,lines:true">
-				<li><span>人员监控</span>
-					<ul>
-						<li id=61 data-options="attributes:{'url':'department/find'}">部门管理</li>
-					</ul>
-					<ul>
-						<li id=62 data-options="attributes:{'url':'employee/find'}">员工管理</li>
-					</ul>
-				</li>
-			</ul>
-		</div> -->
+		</c:if>
 		
 		<c:if test="${activeUser.rolename == '超级管理员' }">
 			<div title="系统管理" style="padding:10px;">
@@ -409,6 +372,26 @@
 			$('#sysManager').tree({
 				onClick : function(node) {
 					if ($('#sysManager').tree("isLeaf", node.target)) {
+						var tabs3 = $("#tabs");
+						var tab3 = tabs3.tabs("getTab", node.text);
+						if (tab3) {
+							tabs3.tabs("select", node.text);
+						} else {
+							tabs3.tabs('add', {
+								title : node.text,
+								href : node.attributes.url,
+								closable : true,
+								bodyCls : "content"
+							});
+						}
+					}
+				}
+			});
+			
+			/* Sys backgroundMonitor Tree onClick Event */
+			$('#backgroundMonitor').tree({
+				onClick : function(node) {
+					if ($('#backgroundMonitor').tree("isLeaf", node.target)) {
 						var tabs3 = $("#tabs");
 						var tab3 = tabs3.tabs("getTab", node.text);
 						if (tab3) {

@@ -4,32 +4,32 @@
   "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
     <!--数据库驱动-->
-    <classPathEntry    location="P://lxt//dev//workspace2019//linglong-erp//WebRoot//WEB-INF//lib//mysql-connector-java-5.1.32.jar"/>
+    <classPathEntry    location="E://Users//lxt//git//U2UHelpProject//zxzd-erp//WebRoot//WEB-INF//lib//mysql-connector-java-5.1.32.jar"/>
     <context id="mysqlTables"    targetRuntime="MyBatis3">
         <commentGenerator>
             <property name="suppressDate" value="true"/>
             <property name="suppressAllComments" value="true"/>
         </commentGenerator>
         <!--数据库链接地址账号密码-->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost/production_ssm" userId="root" password="root">
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost/p2phelp" userId="root" password="root">
         </jdbcConnection>
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
         <!--生成Model类存放位置-->
-        <javaModelGenerator targetPackage="com.megagao.production.ssm.domain" targetProject="linglong-erp">
+        <javaModelGenerator targetPackage="com.megagao.production.ssm.domain" targetProject="zxzd-erp">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
         <!--生成映射文件存放位置-->
-        <sqlMapGenerator targetPackage="com.megagao.production.ssm.mapper" targetProject="linglong-erp">
+        <sqlMapGenerator targetPackage="com.megagao.production.ssm.mapper" targetProject="zxzd-erp">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
         <!--生成Dao类存放位置-->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.megagao.production.ssm.mapper" targetProject="linglong-erp">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.megagao.production.ssm.mapper" targetProject="zxzd-erp">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
         <!--生成对应表及类名-->
-        <table tableName="ll_refund_record" domainObjectName="RefundGoodsRecord" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="rr_category_info" domainObjectName="RRCategoryInfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
     </context>
 </generatorConfiguration>

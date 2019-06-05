@@ -324,3 +324,14 @@ INSERT INTO `sys_user_role` VALUES ('148237503507696', '3213', '005');
 INSERT INTO `sys_user_role` VALUES ('148249856407793', '006', '002');
 INSERT INTO `sys_user_role` VALUES ('148255363744945', '007', '004');
 
+-- ----------------------------
+-- Records of rr_category_info
+-- ----------------------------
+CREATE TABLE `rr_category_info` (
+  `id` varchar(64) NOT NULL,
+  `level` int(2) DEFAULT NULL COMMENT '分类级别',
+  `cate_name` varchar(64) DEFAULT NULL COMMENT '分类名称',
+  `parent_id` varchar(64) DEFAULT NULL COMMENT '父级ID',
+  `cate_desc` varchar(128) DEFAULT NULL COMMENT '分类描述',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
